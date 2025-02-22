@@ -8,8 +8,6 @@ The parent collection can be found at
 [OSNW-WPF-Custom-Dialog-Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 The dialog models can be found at 
 [Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
-The consumer model can be found at 
-[Consumer](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 
 ## Overview
 
