@@ -6,7 +6,7 @@ the same DLL, showing that custom dialogs can be in individual DLLs or packaged
 as a suite of related dialogs in a single DLL.
 
 An application template that uses the dialog templates can be found at 
-[LINK TITLE](https://xxxx.xxxx.com/xxxx).
+[Consumer](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Consumer).
 
 ## Overview
 
