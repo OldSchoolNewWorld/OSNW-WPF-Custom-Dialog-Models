@@ -4,8 +4,8 @@ This project is a WPF application template to test or demonstrate the
 consumption of dialogs based on the OSNW WPF Custom Dialog Templates. It 
 includes an embedded duplicate of the example dialog used in the templates.
 
-The dialog templates can be found at 
-[LINK TITLE](https://xxxx.xxxx.com/xxxx).
+The dialog models can be found at 
+[Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).
 
 ## Overview
 
