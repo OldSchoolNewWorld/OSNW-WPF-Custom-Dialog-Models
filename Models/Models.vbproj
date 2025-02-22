@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Models</RootNamespace>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
+    <RootNamespace>OSNW.Dialog</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Version>0.1.0</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>OSNW.CustomDialogModelsWPF</PackageId>
+    <Title>OSNW Custom WPF Dialog Models</Title>
+    <Authors>OldSchoolNewWorld</Authors>
+    <Company>OldSchoolNewWorld</Company>
+    <Description>Templates to create custom dialogs for use by a WPF application or another DLL assembly.</Description>
+    <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>
+    <PackageReleaseNotes>Initial development version upload</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dialog.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Dialog.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
