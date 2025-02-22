@@ -121,6 +121,8 @@ the code files.
 deleted or overridden if so desired. This is probably the most likely approach 
 for an embedded dialog. The designated icon will be used when the dialog is 
 shown.
+  - The (ex. Dialog.ico) icon included in the sample was generated from the 
+"Dialog.png" file found at [Visual Studio Image Library](https://www.microsoft.com/en-us/download/details.aspx?id=35825).
   - The XAML syntax for the embedded dialog model is different from the syntax 
 for the window in a DLL and hosted dialog models.
   - Add the icon file (ex. Dialog.ico) to the dialog or application project.
