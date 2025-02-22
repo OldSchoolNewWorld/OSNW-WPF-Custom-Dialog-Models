@@ -5,12 +5,10 @@ application or another DLL assembly. Both of the example implementations are in
 the same DLL, showing that custom dialogs can be in individual DLLs or packaged 
 as a suite of related dialogs in a single DLL.
 
-The parent collection can be found at 
-[OSNW-WPF-Custom-Dialog-Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 The dialog models can be found at 
 [Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 The consumer model can be found at 
-[Consumer](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
+[Consumer](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Consumer).  
 
 ## Overview
 
