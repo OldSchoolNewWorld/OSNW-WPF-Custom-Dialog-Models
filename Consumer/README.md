@@ -2,10 +2,14 @@
 
 This project is a WPF application template to test or demonstrate the 
 consumption of dialogs based on the OSNW WPF Custom Dialog Templates. It 
-includes an embedded duplicate of the example dialog used in the templates.
+includes an embedded duplicate of the example dialog used in the templates.  
 
+The parent collection can be found at 
+[OSNW-WPF-Custom-Dialog-Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 The dialog models can be found at 
-[Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).
+[Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
+The consumer model can be found at 
+[Consumer](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models/tree/master/Models).  
 
 ## Overview
 
