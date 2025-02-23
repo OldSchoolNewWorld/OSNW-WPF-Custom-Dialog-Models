@@ -237,8 +237,9 @@ Public Class DialogWindow
         'If Me.WarnClose() Then
         '    Dim Msg As System.String = "Allow close?"
         '    Dim MsgResult As System.Windows.MessageBoxResult =
-        '    System.Windows.MessageBox.Show(Msg, "Approve closure",
-        '    MessageBoxButton.YesNo, MessageBoxImage.Warning)
+        '        System.Windows.MessageBox.Show(Msg, "Approve closure",
+        '            System.Windows.MessageBoxButton.YesNo,
+        '            System.Windows.MessageBoxImage.Warning)
         '    If MsgResult = MessageBoxResult.No Then
         '        ' If user doesn't want to close, cancel closure.
         '        e.Cancel = True

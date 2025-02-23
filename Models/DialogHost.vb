@@ -79,7 +79,6 @@ Public NotInheritable Class DialogHost
     ' are included to support operation of the example. In general, examination
     ' by the setter should normally be handled here before passing data to the
     ' window.
-
     Public Property Red As System.Byte
     Public Property Green As System.Byte
     Public Property Blue As System.Byte

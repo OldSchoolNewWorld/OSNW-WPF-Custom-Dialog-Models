@@ -33,7 +33,8 @@ Imports System.Windows
 '''' </remarks>
 Friend Class HostedWindow
 
-    ' Looking into being able to have the dialog window not be accesible outside of the DLL.
+    ' These links are from looking into being able to have the dialog window not
+    ' be accessible outside of the DLL.
 
     ' REF: How do I mark a control as 'Private' in WPF?
     ' https://stackoverflow.com/questions/29525968/how-do-i-mark-a-control-as-private-in-wpf

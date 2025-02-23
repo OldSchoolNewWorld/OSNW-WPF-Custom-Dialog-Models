@@ -30,6 +30,8 @@ Public Class EmbeddedWindow
     ' A signal to distinguish between aborts and acceptance at closure.
     Private ClosingViaOk As System.Boolean
 
+    ' DEV: This specific value is not intended as part of the template.
+    ' It is included to support operation of the example.
     ' Prevent looping responses.
     Private SettingSliders As System.Boolean
 
@@ -204,9 +206,10 @@ Public Class EmbeddedWindow
         'If Me.WarnClose() Then
         '    Dim Msg As System.String = "Allow close?"
         '    Dim MsgResult As System.Windows.MessageBoxResult =
-        '    System.Windows.MessageBox.Show(Msg, "Approve closure",
-        '    MessageBoxButton.YesNo, MessageBoxImage.Warning)
-        '    If MsgResult = MessageBoxResult.No Then
+        '        System.Windows.MessageBox.Show(Msg, "Approve closure",
+        '            System.Windows.MessageBoxButton.YesNo,
+        '            System.Windows.MessageBoxImage.Warning)
+        '    If MsgResult = System.Windows.MessageBoxResult.No Then
         '        ' If user doesn't want to close, cancel closure.
         '        e.Cancel = True
         '        Exit Sub ' Early exit.

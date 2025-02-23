@@ -9,6 +9,8 @@ Option Infer Off
 ' Is it possible to get XML comments to work on the windows?
 Class MainWindow
 
+    ' DEV: These specific values are not intended as part of the template.
+    ' They are included to support operation of the example.
     Private Red As System.Byte
     Private Green As System.Byte
     Private Blue As System.Byte
