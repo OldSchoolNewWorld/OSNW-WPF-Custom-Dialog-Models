@@ -16,6 +16,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>
     <PackageReleaseNotes>Initial development version upload</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
