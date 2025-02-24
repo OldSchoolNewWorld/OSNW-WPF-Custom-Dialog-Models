@@ -22,10 +22,11 @@
 
   <ItemGroup>
     <None Remove="Dialog.ico" />
+    <None Remove="Resources\Dialog.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Dialog.ico">
+    <Resource Include="Resources\Dialog.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

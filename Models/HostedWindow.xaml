@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OSNW.Dialog"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight" MinWidth="350" Title="SET TITLE!"
-        Icon="/Models;component/Dialog.ico">
+        Icon="/Models;component/Resources/Dialog.ico">
     <DockPanel x:Name="MainDockPanel" LastChildFill="False">
         <DockPanel x:Name="InteractDockPanel" DockPanel.Dock="Top"
                    Margin="3,0,3,0" LastChildFill="False">
