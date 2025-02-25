@@ -13,7 +13,7 @@ Imports System.Windows
 '   Maybe just include PresentationFramework.dll? Or System.Windows?
 
 ''' <summary>
-''' DEV: Represents a template for a shell that exposes minimal features of a WPF
+''' DEV: Represents a model for a shell that exposes minimal features of a WPF
 ''' dialog displayed as a <see cref="System.Windows.Window"/>.
 ''' </summary>
 ''' <remarks>
@@ -28,7 +28,7 @@ Imports System.Windows
 ''' </para>
 ''' <para>
 ''' <c>DialogHost</c> is marked "NotInheritable" because it is intended as a
-''' template, not as a base type. It is created as a reusable (available from a
+''' model, not as a base type. It is created as a reusable (available from a
 ''' DLL) class that hosts a specific dialog window. It is not dedicated to
 ''' consumption by any particular assembly.
 ''' </para>
@@ -75,7 +75,7 @@ Public NotInheritable Class DialogHost
 
 #Region "Properties"
 
-    ' DEV: These specific properties are not intended as part of the template. They
+    ' DEV: These specific properties are not intended as part of the model. They
     ' are included to support operation of the example. In general, examination
     ' by the setter should normally be handled here before passing data to the
     ' window.
@@ -279,8 +279,8 @@ Public NotInheritable Class DialogHost
     End Class ' IcoToBitmapSourceConverter
 
     ''' <summary>
-    ''' DEV: This is not necessarily part of the template. It is a utility for
-    ''' use with the sample dialog window. It can be used to load an icon from a
+    ''' DEV: This is not necessarily part of the model. It is a utility for use
+    ''' with the sample dialog window. It can be used to load an icon from a
     ''' file at run time.
     ''' </summary>
     Private Shared Function GetIconFromFile(ByVal iconPath As System.String) _
@@ -295,8 +295,8 @@ Public NotInheritable Class DialogHost
     End Function ' GetIconFromFile
 
     ''' <summary>
-    ''' DEV: This is not necessarily part of the template. It is a utility for
-    ''' an alternate method to select the icon for the dialog. It can be used to
+    ''' DEV: This is not necessarily part of the model. It is a utility for an
+    ''' alternate method to select the icon for the dialog. It can be used to
     ''' load an icon embedded in a DLL.
     ''' </summary>
     Private Shared Function GetIconFromResource(ByVal iconPath As System.String) As _
@@ -314,7 +314,7 @@ Public NotInheritable Class DialogHost
     End Function ' GetIconFromResource
 
     ''' <summary>
-    ''' DEV: This is not necessarily part of the template. It is a utility to
+    ''' DEV: This is not necessarily part of the model. It is a utility to
     ''' construct a Pack URI, to load an icon embedded in a DLL, in proper form.
     ''' </summary>
     Private Shared Function GetIconPath(

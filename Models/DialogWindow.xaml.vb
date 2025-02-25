@@ -19,7 +19,7 @@ Imports System.Windows
 '   be ignored."
 '
 '''' <summary>
-'''' Represents a template for a reusable dialog provided by a DLL.
+'''' Represents a model for a reusable dialog provided by a DLL.
 '''' </summary>
 '''' <remarks>
 '''' <para>
@@ -69,8 +69,8 @@ Public Class DialogWindow
 
 #Region "Properties"
 
-    ' These specific properties are not intended as part of the template. They
-    ' are included to support operation of the example.
+    ' These specific properties are not intended as part of the model. They are
+    ' included to support operation of the example.
     Public Property Red As System.Byte
     Public Property Green As System.Byte
     Public Property Blue As System.Byte
@@ -80,10 +80,10 @@ Public Class DialogWindow
 #End Region ' "Properties"
 
 #Region "Internal utilities"
-    ' These utilities are not necessarily intended as part of the template.
+    ' These utilities are not necessarily intended as part of the model.
 
     '''' <summary>
-    '''' Copied from ColorUtils.vb. This is not part of the template. It is a
+    '''' Copied from ColorUtils.vb. This is not part of the model. It is a
     '''' utility for use with the sample dialog window. It returns a foreground
     '''' color for ColorTextBox that is readable against the background color.
     '''' </summary>
@@ -99,7 +99,7 @@ Public Class DialogWindow
     End Function ' ContrastingBW
 
     '''' <summary>
-    '''' This is not, necessarily, part of the template. It is a utility for use
+    '''' This is not, necessarily, part of the model. It is a utility for use
     '''' with the sample dialog window. It provides visual feedback of the
     '''' up/down RGB selections. It does illustrate that similar activities may
     '''' be required to reflect the impact of state changes.
@@ -118,8 +118,8 @@ Public Class DialogWindow
 
 #End Region ' "Internal utilities"
 
-#Region "Template utilities"
-    ' These utilities are intended as part of the template.
+#Region "Model utilities"
+    ' These utilities are intended as part of the model.
 
     '''' <summary>
     '''' Evaluate whether there is any reason to consider aborting closure via
@@ -159,10 +159,10 @@ Public Class DialogWindow
 
     End Function ' OkToOk
 
-#End Region ' "Template utilities"
+#End Region ' "Model utilities"
 
-#Region "Template Events"
-    ' These events are intended as part of the template.
+#Region "Model Events"
+    ' These events are intended as part of the model.
 
     ''' <summary>
     ''' Occurs when this <c>Window</c> is initialized. Backing fields and local
@@ -304,11 +304,11 @@ Public Class DialogWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Template Events"
+#End Region ' "Model Events"
 
 #Region "Example Events"
-    ' These events are not intended as part of the template. They are included
-    ' to support operation of the example.
+    ' These events are not intended as part of the model. They are included to
+    ' support operation of the example.
 
     Private Sub SliderR_ValueChanged(sender As Object,
         e As RoutedPropertyChangedEventArgs(Of System.Double)) _

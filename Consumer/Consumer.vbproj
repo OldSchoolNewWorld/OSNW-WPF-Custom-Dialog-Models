@@ -11,7 +11,7 @@
     <Title>OSNW Custom WPF Dialog Consumer</Title>
     <Authors>OldSchoolNewWorld</Authors>
     <Company>OldSchoolNewWorld</Company>
-    <Description>A WPF application template to test or demonstrate the consumption of dialogs based on the OSNW WPF Custom Dialog Templates.</Description>
+    <Description>A WPF application model to test or demonstrate the consumption of dialogs based on the OSNW WPF Custom Dialog Models.</Description>
     <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>
@@ -20,7 +20,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Dialog.ico" />
     <None Remove="Resources\Dialog.ico" />
   </ItemGroup>
 

@@ -15,7 +15,7 @@ Option Infer Off
 '   the next rebuild and the warning showed again.
 '
 '''' <summary>
-'''' Represents a template for a dialog window embedded in the consuming
+'''' Represents a model for a dialog window embedded in the consuming
 '''' application.
 '''' </summary>
 '''' <remarks>
@@ -30,15 +30,15 @@ Public Class EmbeddedWindow
     ' A signal to distinguish between aborts and acceptance at closure.
     Private ClosingViaOk As System.Boolean
 
-    ' DEV: This specific value is not intended as part of the template.
-    ' It is included to support operation of the example.
+    ' DEV: This specific value is not intended as part of the model. It is
+    ' included to support operation of the example.
     ' Prevent looping responses.
     Private SettingSliders As System.Boolean
 
 #Region "Properties"
 
-    ' DEV: These specific properties are not intended as part of the template.
-    ' They are included to support operation of the example.
+    ' DEV: These specific properties are not intended as part of the model. They
+    ' are included to support operation of the example.
     Public Property Red As System.Byte
     Public Property Green As System.Byte
     Public Property Blue As System.Byte
@@ -48,11 +48,11 @@ Public Class EmbeddedWindow
 #End Region ' "Properties"
 
 #Region "Internal utilities"
-    ' DEV: These utilities are not necessarily intended as part of the template.
+    ' DEV: These utilities are not necessarily intended as part of the model.
 
     '''' <summary>
     '''' Copied from ColorUtils.vb.
-    '''' DEV: This is not actually part of the template. It is a utility for use
+    '''' DEV: This is not actually part of the model. It is a utility for use
     '''' with the sample dialog window. It makes the foreground text in
     '''' ColorTextBox readable against the background color.
     '''' </summary>
@@ -68,10 +68,10 @@ Public Class EmbeddedWindow
     End Function ' ContrastingBW
 
     '''' <summary>
-    '''' DEV: This is not, necessarily, part of the template. It is a utility
-    '''' for use with the sample dialog window. It provides visual feedback of
-    '''' the up/down RGB selections. It does illustrate that similar activities
-    '''' may be required to reflect the impact of state changes.
+    '''' DEV: This is not, necessarily, part of the model. It is a utility for
+    '''' use with the sample dialog window. It provides visual feedback of the
+    '''' up/down RGB selections. It does illustrate that similar activities may
+    '''' be required to reflect the impact of state changes.
     '''' </summary>
     Private Sub UpdateColorTextBox()
         Dim BackgroundColor As System.Windows.Media.Color =
@@ -87,8 +87,8 @@ Public Class EmbeddedWindow
 
 #End Region ' "Internal utilities"
 
-#Region "Template utilities"
-    ' DEV: These utilities are intended as part of the template.
+#Region "Model utilities"
+    ' DEV: These utilities are intended as part of the model.
 
     '''' <summary>
     '''' Evaluate whether there is any reason to consider aborting closure via
@@ -128,10 +128,10 @@ Public Class EmbeddedWindow
 
     End Function ' OkToOk
 
-#End Region ' "Template utilities"
+#End Region ' "Model utilities"
 
-#Region "Template Events"
-    ' DEV: These events are intended as part of the template.
+#Region "Model Events"
+    ' DEV: These events are intended as part of the model.
 
     ''' <summary>
     ''' Occurs when this <c>Window</c> is initialized. Backing fields and local
@@ -273,11 +273,11 @@ Public Class EmbeddedWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Template Events"
+#End Region ' "Model Events"
 
 #Region "Example Events"
-    ' DEV: These events are not intended as part of the template. They are
-    ' included to support operation of the example.
+    ' DEV: These events are not intended as part of the model. They are included
+    ' to support operation of the example.
 
     Private Sub SliderR_ValueChanged(sender As Object,
         e As RoutedPropertyChangedEventArgs(Of System.Double)) _

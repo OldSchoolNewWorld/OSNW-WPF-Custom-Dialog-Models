@@ -12,7 +12,7 @@
     <Title>OSNW Custom WPF Dialog Models</Title>
     <Authors>OldSchoolNewWorld</Authors>
     <Company>OldSchoolNewWorld</Company>
-    <Description>Templates to create custom dialogs for use by a WPF application or another DLL assembly.</Description>
+    <Description>Models to create custom dialogs for use by a WPF application or another DLL assembly.</Description>
     <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>

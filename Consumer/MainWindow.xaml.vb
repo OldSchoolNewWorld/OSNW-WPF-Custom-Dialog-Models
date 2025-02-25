@@ -9,15 +9,15 @@ Option Infer Off
 ' Is it possible to get XML comments to work on the windows?
 Class MainWindow
 
-    ' DEV: These specific values are not intended as part of the template.
-    ' They are included to support operation of the example.
+    ' DEV: These specific values are not intended as part of the model. They are
+    ' included to support operation of the example.
     Private Red As System.Byte
     Private Green As System.Byte
     Private Blue As System.Byte
 
     ''' <summary>
-    ''' DEV: Copied from ColorUtils.vb. This is not part of the template. It is
-    ''' a utility for use with the sample dialog window. It returns a foreground
+    ''' DEV: Copied from ColorUtils.vb. This is not part of the model. It is a
+    ''' utility for use with the sample dialog window. It returns a foreground
     ''' color for ColorTextBox that is readable against the background color.
     ''' </summary>
     Private Shared Function ContrastingBW(ByVal r As System.Byte,
@@ -32,7 +32,7 @@ Class MainWindow
     End Function ' ContrastingBW
 
     ''' <summary>
-    ''' DEV: This is not, necessarily, part of the template. It is a utility for
+    ''' DEV: This is not, necessarily, part of the model. It is a utility for
     ''' use with the sample dialog window. It makes the foreground text in
     ''' ColorTextBox readable against the background color. It does illustrate
     ''' that similar activities may be required to reflect the impact of state
@@ -51,8 +51,8 @@ Class MainWindow
             $"R:{Me.Red} G:{Me.Green} B:{Me.Blue}"
     End Sub ' UpdateColorTextBox
 
-#Region "Template Events"
-    ' DEV: These events are intended as part of the template.
+#Region "Model Events"
+    ' DEV: These events are intended as part of the model.
 
     ''' <summary>
     ''' Occurs when this <c>Window</c> is initialized. Backing fields can
@@ -115,11 +115,11 @@ Class MainWindow
         Me.Close()
     End Sub ' CloseButton_Click
 
-#End Region ' "Template Events"
+#End Region ' "Model Events"
 
 #Region "Example Events"
-    ' DEV: These events are not intended as part of the template. They are
-    ' included to support operation of the example.
+    ' DEV: These events are not intended as part of the model. They are included
+    ' to support operation of the example.
 
     ''' <summary>
     ''' Displays a dialog window embedded in the consuming assembly and

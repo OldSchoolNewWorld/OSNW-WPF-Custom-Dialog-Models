@@ -1,8 +1,8 @@
-﻿# Demo/Test WPF Custom Dialog Templates
+﻿# Demo/Test WPF Custom Dialog Models
 
-This project is a WPF application template to test or demonstrate the 
-consumption of dialogs based on the OSNW WPF Custom Dialog Templates. It 
-includes an embedded duplicate of the example dialog used in the templates.  
+This project is a WPF application model to test or demonstrate the 
+consumption of dialogs based on the OSNW WPF Custom Dialog Models. It includes 
+an embedded duplicate of the example dialog used in the models.  
 
 The parent collection can be found at 
 [OSNW-WPF-Custom-Dialog-Models](https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models).  
@@ -11,7 +11,7 @@ The dialog models can be found at
 
 ## Overview
 
-This is a template. It is intended to be copied, in whole or in part, to create 
+This is a model. It is intended to be copied, in whole or in part, to create 
 new custom assemblies that contain or reuse custom dialogs.
 
 The main window contains three buttons that show custom dialogs. The leftmost 
@@ -23,7 +23,7 @@ window. The main window also contains items that reflect the result of showing
 the dialog.
 
 Items marked "(ex. *ItemName*)" in this README file indicate the values that 
-match the examples in the dialog and application templates.
+match the examples in the dialog and application models.
 
 ### Coding Notes
 
@@ -34,7 +34,7 @@ the use of "Me".
 
 Some of the XML comments are targeted at developers and are left in place so 
 that they are visible to IntelliSense while creating a new application/assembly.
-Items marked "DEV:" are intended for a developer using the template, not for
+Items marked "DEV:" are intended for a developer using the model, not for
 consuming assemblies that use the dialog. They can be left in place, deleted,
 suppressed by adding another apostrophe, or suppressed from output by the
 compiler via "Generate XML documentation file".
@@ -43,7 +43,7 @@ External research references are marked "REF:". Those are links to research
 done while looking for code samples or detailed explanations of properties and 
 methods.
 
-The template includes regions. Those regions may appear to be overkill for the 
+The model includes regions. Those regions may appear to be overkill for the 
 simplistic example dialog but can provide organization for a more complex 
 dialog. In a more complex dialog, the region content may be worth moving to 
 separate modules.

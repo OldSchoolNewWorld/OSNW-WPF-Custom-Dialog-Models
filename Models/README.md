@@ -1,6 +1,6 @@
-﻿# WPF Custom Dialog Templates
+﻿# WPF Custom Dialog Models
 
-This project contains templates to create custom dialogs for use by a WPF 
+This project contains models to create custom dialogs for use by a WPF 
 application or another DLL assembly. Both of the example implementations are in 
 the same DLL, showing that custom dialogs can be in individual DLLs or packaged 
 as a suite of related dialogs in a single DLL.
@@ -12,17 +12,16 @@ The consumer model can be found at
 
 ## Overview
 
-These are templates. They are intended to provide source code that can be 
-copied and used to create new custom dialogs. These templates are not intended 
-to be used directly or as base classes to create new custom dialogs. The DLL 
-(ex. Models.dll) created by this project is matched to the application 
-template; it is not intended to be referenced by a project based on this 
-template. Only the .vb and .xaml files are expected to be of actual use in the 
-creation of new custom dialogs. The steps described below will create the other 
-files.
+These are models. They are intended to provide source code that can be copied 
+and used to create new custom dialogs. These models are not intended to be used 
+directly or as base classes to create new custom dialogs. The DLL 
+(ex. Models.dll) created by this project is matched to the application model; 
+it is not intended to be referenced by a project based on this model. Only the 
+.vb and .xaml files are expected to be of actual use in the creation of new 
+custom dialogs. The steps described below will create the other files.
 
 Items marked "(ex. *ItemName*)" in this README file indicate the values that 
-match the examples in the dialog and application templates.
+match the examples in the dialog and application models.
 
 ### Coding Notes
 
@@ -31,11 +30,11 @@ code to make it clear what is being done and to make it easier to research the
 code elements. Fully qualified references are used in much of the code, 
 including the use of "Me".
 
-Some of the specific implementation details are included in the templates as 
-XML comments. Those XML comments are targeted at developers and are left in 
-place so that they are visible to IntelliSense while creating a new 
+Some of the specific implementation details are included in the models as XML 
+comments. Those XML comments are targeted at developers and are left in place 
+so that they are visible to IntelliSense while creating a new 
 application/assembly. Items marked "DEV:" are intended for a developer using 
-the templates, not for visibility to consuming assemblies that use the dialog. 
+the models, not for visibility to consuming assemblies that use the dialog. 
 They can be left in place, deleted, suppressed by adding a fourth apostrophe, 
 or suppressed from output by the compiler via "Generate XML documentation file" 
 in the project Properties.
@@ -44,7 +43,7 @@ External research references are marked "REF:". Those are links to research
 done while looking for code samples or detailed explanations of properties and 
 methods.
 
-The templates include regions. Those regions may appear to be overkill for the 
+The models include regions. Those regions may appear to be overkill for the 
 simplistic example but can provide organization for a more complex dialog. In a 
 complex dialog, the region content may be worth moving to separate modules.
 

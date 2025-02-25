@@ -19,8 +19,7 @@ Imports System.Windows
 '   be ignored."
 '
 '''' <summary>
-'''' Represents a template for the window displayed by a
-'''' <see cref="DialogHost"/>.
+'''' Represents a model for the window displayed by a <see cref="DialogHost"/>.
 '''' </summary>
 '''' <remarks>
 '''' A <see cref="DialogHost"/> creates a layer of abstraction between its
@@ -58,10 +57,10 @@ Friend Class HostedWindow
 
 #Region "Properties"
 
-    ' DEV: These specific properties are not intended as part of the template.
-    ' They are included to support operation of the example. In general,
-    ' properties like these should not need examination by the setter; that
-    ' should normally be handled in the associated <see cref="DialogHost"/>.
+    ' DEV: These specific properties are not intended as part of the model. They
+    ' are included to support operation of the example. In general, properties
+    ' like these should not need examination by the setter; that should normally
+    ' be handled in the associated <see cref="DialogHost"/>.
     Public Property Red As System.Byte
     Public Property Green As System.Byte
     Public Property Blue As System.Byte
@@ -71,12 +70,12 @@ Friend Class HostedWindow
 #End Region ' "Properties"
 
 #Region "Internal utilities"
-    ' DEV: These utilities are not intended as part of the template. Any dialog
-    ' may need to perform operations unique to itself.
+    ' DEV: These utilities are not intended as part of the model. Any dialog may
+    ' need to perform operations unique to itself.
 
     ''' <summary>
-    ''' DEV: Copied from ColorUtils.vb. This is not part of the template. It is
-    ''' a utility for use with the sample dialog window. It returns a foreground
+    ''' DEV: Copied from ColorUtils.vb. This is not part of the model. It is a
+    ''' utility for use with the sample dialog window. It returns a foreground
     ''' color for ColorTextBox that is readable against the background color.
     ''' </summary>
     Private Shared Function ContrastingBW(ByVal r As System.Byte,
@@ -92,9 +91,9 @@ Friend Class HostedWindow
 
 #End Region ' "Internal utilities"
 
-#Region "Template utilities"
-    ' These utilities are intended as part of the template, but the
-    ' implementation may vary or they may be omitted in individual cases.
+#Region "Model utilities"
+    ' These utilities are intended as part of the model, but the implementation
+    ' may vary or they may be omitted in individual cases.
 
     ''' <summary>
     ''' Update visual items that reflect the impact of state changes.
@@ -165,7 +164,7 @@ Friend Class HostedWindow
         End If
     End Function ' OkToOk
 
-#End Region ' "Template utilities"
+#End Region ' "Model utilities"
 
 #Region "Event Implementations"
     ' These routines contain detailed implementations of Event handlers.
@@ -198,7 +197,7 @@ Friend Class HostedWindow
 
 #End Region ' "Event Implementations"
 
-#Region "Template Events"
+#Region "Model Events"
 
     ''' <summary>
     ''' Occurs when this <c>Window</c> is initialized. Backing fields and local
@@ -324,11 +323,11 @@ Friend Class HostedWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Template Events"
+#End Region ' "Model Events"
 
 #Region "Example Events"
-    ' DEV: These events are not intended as part of the template. They are
-    ' included to support operation of the example.
+    ' DEV: These events are not intended as part of the model. They are included
+    ' to support operation of the example.
 
     Private Sub SliderR_ValueChanged(sender As Object,
         e As RoutedPropertyChangedEventArgs(Of System.Double)) _
