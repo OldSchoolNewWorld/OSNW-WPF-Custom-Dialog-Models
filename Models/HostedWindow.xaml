@@ -51,7 +51,7 @@
         <DockPanel x:Name="ButtonsDockPanel" DockPanel.Dock="Bottom"
                    LastChildFill="False">
             <Button x:Name="OkButton" DockPanel.Dock="Right" Margin="0,3,3,3"
-                    IsCancel="False">O_k</Button>
+                    IsDefault="True">O_k</Button>
             <Button x:Name="CancelButton" DockPanel.Dock="Right"
                     Margin="0,3,3,3" IsCancel="True">Cance_l</Button>
         </DockPanel>
