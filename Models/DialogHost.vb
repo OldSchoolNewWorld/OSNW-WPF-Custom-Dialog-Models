@@ -296,8 +296,8 @@ Public NotInheritable Class DialogHost
 
     ''' <summary>
     ''' DEV: This is not necessarily part of the template. It is a utility for
-    ''' use with the sample dialog window. It can be used to load an icon
-    ''' embedded in a DLL.
+    ''' an alternate method to select the icon for the dialog. It can be used to
+    ''' load an icon embedded in a DLL.
     ''' </summary>
     Private Shared Function GetIconFromResource(ByVal iconPath As System.String) As _
         System.Windows.Media.ImageSource
@@ -312,6 +312,22 @@ Public NotInheritable Class DialogHost
         Return IconBitmapImage
 
     End Function ' GetIconFromResource
+
+    ''' <summary>
+    ''' DEV: This is not necessarily part of the template. It is a utility to
+    ''' construct a Pack URI, to load an icon embedded in a DLL, in proper form.
+    ''' </summary>
+    Private Shared Function GetIconPath(
+                                       ByVal referencedAssembly As System.String,
+                                       fileName As System.String) As System.String
+
+        ' Ref: Referenced Assembly Resource File
+        ' https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/pack-uris-in-wpf#referenced-assembly-resource-file
+
+        Dim IconPath As System.String = "pack://application:,,,/" & referencedAssembly & ";component/Resources/" & fileName
+        Return IconPath
+
+    End Function ' GetIconPath
 
 #End Region ' "Constructor helpers"
 
@@ -352,22 +368,12 @@ Public NotInheritable Class DialogHost
             '' DEV: Load an icon from a file.
             '' This sequence works, but it needs to find the file in its
             '' specified location.
-            'Dim IconPath As System.String = "C:\Users\UserX\Documents\" &
-            '    "Projects\Dialogs DLL\Dialog.ico"
+            'Dim IconPath As System.String =
+            '    "C:\Users\UserX\Source\Repos\ProjectPath\Resources\Dialog.ico"
             '.m_Icon = GetIconFromFile(IconPath)
 
             '' DEV: Load an icon from an embedded resource.
-            'Dim IconPath As System.String =
-            '    "pack://application:,,,/OSNW.DialogDLL;" &
-            '    "component/Dialog.ico"
-            '.m_Icon = GetIconFromResource(IconPath)
-
-            '' DEV: This (untried) one looks like an alternate form that would have
-            '' resources in a folder or internal grouping of resources.
-            '' Load an icon from an embedded resource.
-            'Dim IconPath As System.String =
-            '    "pack://application:,,,/OSNW.DialogDLL;" &
-            '    "component/Resources/Dialog.ico"
+            'Dim IconPath As System.String = GetIconPath("Models", "Dialog.ico")
             '.m_Icon = GetIconFromResource(IconPath)
 
         End With
