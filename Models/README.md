@@ -69,7 +69,7 @@ consumed by any assembly.
 ### Hosted Dialog
 
 A `DialogHost` creates a layer of abstraction between its underlying 
-`HostedDialogWindow` and the consuming assembly.Unlike a window in a DLL, *no* 
+`HostedDialogWindow` and the consuming assembly. Unlike a window in a DLL, *no* 
 public features of `System.Windows.Window` are reachable by the consuming 
 application/assembly unless exposed by the hosting object.
 
