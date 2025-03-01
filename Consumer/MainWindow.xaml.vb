@@ -14,6 +14,7 @@ Class MainWindow
     Private Red As System.Byte
     Private Green As System.Byte
     Private Blue As System.Byte
+    Private dummy As Byte
 
     ''' <summary>
     ''' DEV: Copied from ColorUtils.vb. This is not part of the model. It is a
