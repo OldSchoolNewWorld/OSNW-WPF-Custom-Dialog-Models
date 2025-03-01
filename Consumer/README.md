@@ -116,13 +116,16 @@ window, to (ex. Consumer).
 
 ### Icons
 
-There a few ways to assign a dialog's icon. See the related comments in the 
-code files.
+There are several ways to assign a dialog's icon. See the related comments in 
+the code files.
 - Assign via a fixed/initial icon in the XAML
   - This is included by default in all of the example dialogs, but can be 
 deleted or overridden if so desired. This is probably the most likely approach 
 for an embedded dialog. The designated icon will be used when the dialog is 
 shown.
+  - The (ex. Dialog.ico) icon included in the sample was generated from the 
+"Dialog.png" file found at [Visual Studio Image 
+Library](https://www.microsoft.com/en-us/download/details.aspx?id=35825).
   - The XAML syntax for the embedded dialog model is different from the syntax 
 for the window in a DLL and hosted dialog models.
   - Add the icon file (ex. Dialog.ico) to the dialog or application project.
@@ -136,19 +139,20 @@ state.
   - This approach could be taken if there is a desire to load an icon from a 
 file that might be modified externally.
 - Copy the application icon
-  - This might be done if consuming software wants internal dialogs or 
-third-party dialogs from a DLL to display the application icon on the dialog 
+  - This might be done if consuming software wants internal dialogs, or 
+third-party dialogs from a DLL, to display the application icon on the dialog 
 itself and in the taskbar. That can, in turn, be blocked by the creator of a 
 hosted dialog by not exposing `Icon` in the `DialogHost`.
+	- An example implementation is shown in `HostedDialogButton_Click()` in the 
+sample application.
 - Assign by the consuming code
   - This is probably pointless for the embedded model except for something 
 related to changes that reflect state.
 - Copy a custom overridable icon
-  - UNTESTED. DOES THIS WORK?
   - The XAML syntax for the embedded dialog model is different from the syntax 
 for the window in a DLL and hosted dialog models.
   - Add the icon file (ex. Dialog.ico) to the dialog or application project.
-  - Set "Build Action" for (ex. Dialog.ico) to "Resource".
-  - Set "Copy to Output Directory" for (ex. Dialog.ico) to "Copy always".
+  - Set "Build Action" for (ex. Dialog.ico) to "None".
+  - Set "Copy to Output Directory" for (ex. Dialog.ico) to "Copy if newer".
   - Copy any icon file, prior to starting the application and with the expected 
 name, to replace the original icon file.

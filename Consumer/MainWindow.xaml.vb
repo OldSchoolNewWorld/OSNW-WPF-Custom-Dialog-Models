@@ -270,8 +270,9 @@ Class MainWindow
             .Blue = Me.Blue,
             .TheInteger = StringAsInteger,
             .TheString = CType(Me.ShowStringLabel.Content, System.String)}
-        ' DEV: If desired, change .Icon. A default icon is set in the DLL.
-        '        Dlg.Icon = Nothing
+
+        '' DEV: If desired, change .Icon. A default icon is set in the DLL.
+        'Dlg.Icon = Me.Icon
 
         ' Show the dialog. Process the result.
         Try

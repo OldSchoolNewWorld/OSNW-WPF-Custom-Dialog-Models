@@ -5,6 +5,7 @@ Option Infer Off
 
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Reflection
 Imports System.Windows
 
 ' NOTE: <UseWPF>true</UseWPF> may need to be added to the dialogs'
@@ -295,6 +296,26 @@ Public NotInheritable Class DialogHost
     End Function ' GetIconFromFile
 
     ''' <summary>
+    ''' DEV: This is not necessarily part of the model. It is a utility to
+    ''' construct a Pack URI, to load an icon embedded in a DLL, in proper form.
+    ''' </summary>
+    ''' <param name="referencedAssembly">Specifies the assembly in which the
+    ''' icon resource is located.</param>
+    ''' <param name="fileName">Specifies the name of the icon file.</param>
+    ''' <returns>The constructed string.</returns>
+    Private Shared Function GetIconPackURI(
+        ByVal referencedAssembly As System.String,
+        ByVal fileName As System.String) As System.String
+
+        ' Ref: Referenced Assembly Resource File
+        ' https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/pack-uris-in-wpf#referenced-assembly-resource-file
+
+        Return $"pack://application:,,,/{referencedAssembly}" &
+            $";component/Resources/{fileName}"
+
+    End Function ' GetIconPackURI
+
+    ''' <summary>
     ''' DEV: This is not necessarily part of the model. It is a utility for an
     ''' alternate method to select the icon for the dialog. It can be used to
     ''' load an icon embedded in a DLL.
@@ -312,22 +333,6 @@ Public NotInheritable Class DialogHost
         Return IconBitmapImage
 
     End Function ' GetIconFromResource
-
-    ''' <summary>
-    ''' DEV: This is not necessarily part of the model. It is a utility to
-    ''' construct a Pack URI, to load an icon embedded in a DLL, in proper form.
-    ''' </summary>
-    Private Shared Function GetIconPath(
-                                       ByVal referencedAssembly As System.String,
-                                       fileName As System.String) As System.String
-
-        ' Ref: Referenced Assembly Resource File
-        ' https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/pack-uris-in-wpf#referenced-assembly-resource-file
-
-        Dim IconPath As System.String = "pack://application:,,,/" & referencedAssembly & ";component/Resources/" & fileName
-        Return IconPath
-
-    End Function ' GetIconPath
 
 #End Region ' "Constructor helpers"
 
@@ -367,14 +372,38 @@ Public NotInheritable Class DialogHost
 
             '' DEV: Load an icon from a file.
             '' This sequence works, but it needs to find the file in its
-            '' specified location.
+            '' specified (fixed or calculated) location.
+            '' "Build Action" can be left as "Resource" and "Copy to Output
+            '' Directory" can be left as "Do not copy". It does not need to be
+            '' in a Resources folder.
+            'Dim ReposPath As System.String = "C:\Users\UserX\source\repos"
+            'Dim ProjectPath As System.String =
+            '    "\OSNW-WPF-Custom-Dialog-Models\Models"
+            'Dim FilePath As System.String = "\Resources\InitFromFile.ico"
             'Dim IconPath As System.String =
-            '    "C:\Users\UserX\Source\Repos\ProjectPath\Resources\Dialog.ico"
+            '    $"{ReposPath}{ProjectPath}{FilePath}"
             '.m_Icon = GetIconFromFile(IconPath)
 
             '' DEV: Load an icon from an embedded resource.
-            'Dim IconPath As System.String = GetIconPath("Models", "Dialog.ico")
+            '' Set "Build Action" to "Resource" and "Copy to Output Directory"
+            '' to "Do not copy".
+            'Dim ReferencedAssembly As System.String = "Models"
+            'Dim EmbeddedFileName As System.String = "InitEmbeddedResource.ico"
+            'Dim IconPath As System.String =
+            '    GetIconPackURI(ReferencedAssembly, EmbeddedFileName)
             '.m_Icon = GetIconFromResource(IconPath)
+
+            '' DEV: Load an icon from an overridable file.
+
+            '' REF: C# Executable Executing directory
+            '' https://stackoverflow.com/questions/7025269/c-sharp-executable-executing-directory
+            'Dim AssyPath As System.String = System.IO.Path.GetDirectoryName(
+            '    Assembly.GetExecutingAssembly().Location)
+
+            '' Now use that info.
+            'Dim FilePath As System.String = "\Resources\Override.ico"
+            'Dim IconPath As System.String = $"{AssyPath}{FilePath}"
+            '.m_Icon = GetIconFromFile(IconPath)
 
         End With
     End Sub ' New

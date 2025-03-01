@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Consumer"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
-        Title="Demo/Test WPF Custom Dialog Models">
+        Title="Demo/Test WPF Custom Dialog Models" Icon="/Resources/DemoApp.ico">
     <DockPanel x:Name="MainDockPanel" LastChildFill="False">
         <DockPanel x:Name="SelectionDockPanel" DockPanel.Dock="Top" Margin="3"
                    LastChildFill="False">
