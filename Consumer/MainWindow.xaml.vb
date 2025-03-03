@@ -51,6 +51,90 @@ Class MainWindow
             $"R:{Me.Red} G:{Me.Green} B:{Me.Blue}"
     End Sub ' UpdateColorTextBox
 
+#Region "Model utilities"
+
+    ' Sub Window_Initialized(sender As Object, e As EventArgs) has 'EventArgs'
+    ' whereas other events have 'RoutedEventArgs'. Unless a special difference
+    ' in handling is needed, these two could probably be combined.
+    Private Sub ShowExceptionMessageBox(ByVal caughtBy As System.String,
+                                        ByVal caughtEx As System.Exception,
+                                        ByVal sender As Object,
+                                        ByVal e As System.EventArgs)
+        Dim Caption As System.String = "Initialization Event Failure"
+        Dim Detail As System.String =
+            $"'{caughtBy}' failed with sender='{sender}'" &
+            $" and message '{caughtEx.Message}'."
+        System.Windows.MessageBox.Show(Me, Detail, Caption,
+                                       System.Windows.MessageBoxButton.OK,
+                                       System.Windows.MessageBoxImage.Error)
+    End Sub ' ShowExceptionMessageBox
+
+    ' Sub Window_Initialized(sender As Object, e As EventArgs) has 'EventArgs'
+    ' whereas other events have 'RoutedEventArgs'. Unless a special difference
+    ' in handling is needed, these two could probably be combined.
+    Private Sub ShowExceptionMessageBox(ByVal caughtBy As System.String,
+                                        ByVal caughtEx As System.Exception,
+                                        ByVal sender As Object,
+                                        ByVal e As System.Windows.RoutedEventArgs)
+        Dim Caption As System.String = "Routed Event Failure"
+        Dim Detail As System.String =
+            $"'{caughtBy}' failed with sender='{sender}'" &
+            $" and message '{caughtEx.Message}'."
+        System.Windows.MessageBox.Show(Me, Detail, Caption,
+                                       System.Windows.MessageBoxButton.OK,
+                                       System.Windows.MessageBoxImage.Error)
+    End Sub ' ShowExceptionMessageBox
+
+    ''' <summary>
+    ''' Provides a notice of an unexpected exception.
+    ''' </summary>
+    ''' <param name="caughtBy">Specifies the process in which an unexpected
+    ''' exception occurred.</param>
+    ''' <param name="caughtEx">Provides the unexpected exception.</param>
+    ''' <remarks>
+    ''' <example> This sample shows how to use 
+    ''' <c>ShowExceptionMessageBox(System.String, System.Exception)</c>.
+    ''' <code>
+    ''' 
+    ''' Private Sub SomeSub()
+    '''     ' DEV: The protective shell goes here.
+    '''     Try
+    '''         ' DEV: The meat of the intended operation goes here.
+    ''' 
+    '''         ' DEV: Expected safe operations go here.
+    ''' 
+    '''         Try
+    '''             ' DEV: A risky operation goes here.
+    '''         'Catch ex As Exception
+    '''         '    ' Respond to an anticipated exception.
+    '''         Finally
+    '''             ' DEV: Do any clean-ups or back-outs here.
+    '''         End Try
+    ''' 
+    '''         ' DEV: Expected safe operations go here.
+    ''' 
+    '''     Catch CaughtEx As System.Exception
+    '''         ' Report the unexpected exception.
+    '''         Dim ProcName As System.String = New System.Diagnostics.StackFrame(0).GetMethod().Name
+    '''         ShowExceptionMessageBox(ProcName, CaughtEx)
+    '''     End Try
+    ''' End Sub
+    ''' 
+    ''' </code>
+    ''' </example>
+    ''' </remarks>
+    Private Sub ShowExceptionMessageBox(ByVal caughtBy As System.String,
+                                        ByVal caughtEx As System.Exception)
+        Dim Caption As System.String = "Process Event Failure"
+        Dim Detail As System.String =
+            $"'{caughtBy}' failed with message '{caughtEx.Message}'."
+        System.Windows.MessageBox.Show(Me, Detail, Caption,
+                                       System.Windows.MessageBoxButton.OK,
+                                       System.Windows.MessageBoxImage.Error)
+    End Sub ' ShowExceptionMessageBox
+
+#End Region ' "Model utilities"
+
 #Region "Model Events"
     ' DEV: These events are intended as part of the model.
 
@@ -62,11 +146,34 @@ Class MainWindow
     Private Sub Window_Initialized(sender As Object, e As EventArgs) _
         Handles Me.Initialized
 
-        With Me
-            .Red = 64
-            .Green = 128
-            .Blue = 192
-        End With
+        ' DEV: The protective shell goes here.
+        Try
+            ' DEV: The meat of the intended operation goes here.
+
+            ' DEV: Expected safe operations go here.
+
+            Try
+                ' DEV: A risky operation goes here.
+                With Me
+                    .Red = 64
+                    .Green = 128
+                    .Blue = 192
+                End With
+                Throw New Exception("Forced exception")
+                'Catch ex As Exception
+                '    ' Respond to an anticipated exception.
+            Finally
+                ' DEV: Do any clean-ups or back-outs here.
+            End Try
+
+            ' DEV: Expected safe operations go here.
+
+        Catch CaughtEx As System.Exception
+            ' Report the unexpected exception.
+            Dim ProcName As System.String =
+                New System.Diagnostics.StackFrame(0).GetMethod().Name
+            ShowExceptionMessageBox(ProcName, CaughtEx, sender, e)
+        End Try
     End Sub ' Window_Initialized
 
     ''' <summary>
@@ -78,9 +185,32 @@ Class MainWindow
         sender As Object, e As RoutedEventArgs) _
         Handles Me.Loaded
 
-        With Me
-            .UpdateColorTextBox()
-        End With
+        ' DEV: The protective shell goes here.
+        Try
+            ' DEV: The meat of the intended operation goes here.
+
+            ' DEV: Expected safe operations go here.
+
+            Try
+                ' DEV: A risky operation goes here.
+                With Me
+                    .UpdateColorTextBox()
+                    Throw New Exception("Forced exception")
+                End With
+                'Catch ex As Exception
+                '    ' Respond to an anticipated exception.
+            Finally
+                ' DEV: Do any clean-ups or back-outs here.
+            End Try
+
+            ' DEV: Expected safe operations go here.
+
+        Catch CaughtEx As System.Exception
+            ' Report the unexpected exception.
+            Dim ProcName As System.String =
+                New System.Diagnostics.StackFrame(0).GetMethod().Name
+            ShowExceptionMessageBox(ProcName, CaughtEx, sender, e)
+        End Try
     End Sub ' Window_Loaded
 
     '''' <summary>
@@ -129,16 +259,18 @@ Class MainWindow
         sender As Object, e As RoutedEventArgs) _
         Handles EmbeddedDialogWindowButton.Click
 
-        ' This can be used to allow the caller to specify a contextual title,
-        ' perhaps to include a file name.
-        Const WINDOWTITLE As System.String = "Embedded Dialog Window"
+        Try
 
-        ' Set up the data to be passed to the dialog.
-        Dim StringAsInteger As System.Int32 =
+            ' This can be used to allow the caller to specify a contextual
+            ' title, perhaps to include a file name.
+            Const WINDOWTITLE As System.String = "Embedded Dialog Window"
+
+            ' Set up the data to be passed to the dialog.
+            Dim StringAsInteger As System.Int32 =
             System.Int32.Parse(CType(ShowIntegerLabel.Content, System.String))
 
-        ' Set up the dialog.
-        Dim Dlg As New EmbeddedWindow With {
+            ' Set up the dialog.
+            Dim Dlg As New EmbeddedWindow With {
             .Owner = Me,
             .ShowInTaskbar = False,
             .Title = WINDOWTITLE,
@@ -149,35 +281,45 @@ Class MainWindow
             .Blue = Me.Blue,
             .TheInteger = StringAsInteger,
             .TheString = CType(Me.ShowStringLabel.Content, System.String)}
-        ' DEV: If desired, change .Icon. A default icon is set in the XAML
-        ' layout. It can be changed either in the XAML or by an assignment here.
-        ' One case for that would be if the application icon is to be sent to the
-        ' dialog.
-        '        Dlg.Icon = Nothing
 
-        ' Show the dialog. Process the result.
-        Try
-            Dim DlgResult As System.Boolean? = Dlg.ShowDialog()
-            If DlgResult Then
+            ' DEV: If desired, change .Icon. A default icon is set in the XAML
+            ' layout. It can be changed either in the XAML or by an assignment
+            ' here. One case for that would be if the application icon is to be
+            ' sent to the dialog.
+            'Dlg.Icon = Nothing
 
-                ' Extract any data being returned.
-                Me.Red = Dlg.Red
-                Me.Green = Dlg.Green
-                Me.Blue = Dlg.Blue
+            ' Show the dialog. Process the result.
+            Try
+                Dim DlgResult As System.Boolean? = Dlg.ShowDialog()
+                If DlgResult Then
 
-                ' Update the visuals.
-                Me.UpdateColorTextBox()
-                Me.ShowStringLabel.Content = Dlg.TheString
-                Me.ShowIntegerLabel.Content = Dlg.TheInteger
+                    ' Extract any data being returned.
+                    Me.Red = Dlg.Red
+                    Me.Green = Dlg.Green
+                    Me.Blue = Dlg.Blue
 
-                'Else
-                '' Is anything needed when ShowDialog is false?
-            End If
-        Finally
-            ' DISPOSE OF THE WINDOW?????? SET TO NOTHING ENOUGH TO GET RID OF AT
-            ' LEAST THE WINDOW????? JUST LET THE WINDOW GO OUT OF SCOPE?????
-            ' SETTING TO NOTHING WARNS "Unnecessary assignment of a value to 'Dlg'"
-            '            Dlg = Nothing
+                    ' Update the visuals.
+                    Me.UpdateColorTextBox()
+                    Me.ShowStringLabel.Content = Dlg.TheString
+                    Me.ShowIntegerLabel.Content = Dlg.TheInteger
+
+                    'Else
+                    '' Is anything needed when ShowDialog is false?
+                End If
+                Throw New Exception("Forced by EmbeddedDialogWindowButton_Click")
+            Finally
+                ' DISPOSE OF THE WINDOW?????? SET TO NOTHING ENOUGH TO GET RID
+                ' OF AT LEAST THE WINDOW????? JUST LET THE WINDOW GO OUT OF
+                ' SCOPE?????
+                ' SETTING TO NOTHING WARNS "Unnecessary assignment of a value to
+                ' 'Dlg'"
+                'Dlg = Nothing
+            End Try
+
+        Catch CaughtEx As Exception
+            Dim ProcName As System.String =
+                New System.Diagnostics.StackFrame(0).GetMethod().Name
+            ShowExceptionMessageBox(ProcName, CaughtEx)
         End Try
 
     End Sub ' EmbeddedDialogWindowButton_Click
