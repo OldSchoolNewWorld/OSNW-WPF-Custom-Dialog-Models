@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Models</RootNamespace>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
+    <RootNamespace>OSNW.Dialog</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Title>OSNW Custom WPF Dialog Models</Title>
+    <Version>0.1.0</Version>
+    <Authors>OldSchoolNewWorld</Authors>
+    <Description>Models to create custom dialogs for use by a WPF application or another DLL assembly.</Description>
+    <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
+    <PackageProjectUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</RepositoryUrl>
+    <PackageTags>WPF Custom Dialog VB VB.NET</PackageTags>
+    <PackageReleaseNotes>Original repost</PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>0.1.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\DemoApp.ico" />
+    <None Remove="Resources\Dialog.ico" />
+    <None Remove="Resources\InitEmbeddedResource.ico" />
+    <None Remove="Resources\InitFromFile.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\DemoApp.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Dialog.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\InitEmbeddedResource.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\InitFromFile.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\Override.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

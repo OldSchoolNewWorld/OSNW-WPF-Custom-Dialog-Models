@@ -1,0 +1,42 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Consumer"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+        Title="Demo/Test WPF Custom Dialog Models" Icon="/Resources/DemoApp.ico">
+    <DockPanel x:Name="MainDockPanel" LastChildFill="False">
+        <DockPanel x:Name="SelectionDockPanel" DockPanel.Dock="Top" Margin="3"
+                   LastChildFill="False">
+            <Button x:Name="EmbeddedDialogWindowButton" DockPanel.Dock="Left"
+                    Margin="3" Content="Embedded Dialog Window"/>
+            <Button x:Name="DllDialogWindowButton" DockPanel.Dock="Left"
+                    Margin="3" Content="DLL Dialog Window"/>
+            <Button x:Name="HostedDialogButton" DockPanel.Dock="Left"
+                    Margin="3" Content="Hosted Dialog"/>
+        </DockPanel>
+        <DockPanel x:Name="InteractDockPanel" DockPanel.Dock="Top" Margin="3"
+                   LastChildFill="False">
+            <TextBox x:Name="ColorTextBox" DockPanel.Dock="Top"
+                         Background="Gray" VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" Margin="3,6,3,0"
+                          Text="The color from the dialog - R:123 G:123 B:123"/>
+            <Label x:Name="StringLabel" DockPanel.Dock="Top" Padding="0"
+                   Margin="3,0,3,0" Content="The string is..."/>
+            <Label x:Name="ShowStringLabel" DockPanel.Dock="Top" Padding="0"
+                   Margin="3,0,3,0" Content="Has not been entered"/>
+            <Label x:Name="IntegerLabel" DockPanel.Dock="Top" Padding="0"
+                   Margin="3,6,3,0" Content="The integer is..."/>
+            <Label x:Name="ShowIntegerLabel" DockPanel.Dock="Top" Padding="0"
+                   Margin="3,0,3,0" Content="0"/>
+        </DockPanel>
+        <DockPanel x:Name="ButtonsDockPanel" DockPanel.Dock="Bottom" Margin="3"
+                   LastChildFill="False">
+            <Button x:Name="CloseButton" DockPanel.Dock="Right" Margin="3"
+                    IsCancel="False">C_lose</Button>
+        </DockPanel>
+    </DockPanel>
+</Window>
