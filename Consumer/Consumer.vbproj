@@ -6,15 +6,17 @@
     <RootNamespace>Consumer</RootNamespace>
     <UseWPF>true</UseWPF>
     <Description>A WPF application model to test or demonstrate the consumption of dialogs based on the OSNW WPF Custom Dialog Models.</Description>
-    <Title>OSNW Custom WPF Dialog Consumer</Title>
+    <Title>OSNW WPF Custom Dialog Consumer</Title>
     <Version>0.1.0</Version>
     <Authors>OldSchoolNewWorld</Authors>
     <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
     <PackageProjectUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</PackageProjectUrl>
     <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>WPF Custom Dialog VB VB.NET</PackageTags>
-    <PackageReleaseNotes>Initial repost</PackageReleaseNotes>
+    <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>
+    <PackageReleaseNotes>New upload of initial development version.</PackageReleaseNotes>
+    <PackageId>OSNW.CustomDialogConsumerWPF</PackageId>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,7 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.vbproj" />
+    <Reference Include="Models">
+      <HintPath>..\Models\bin\Debug\net8.0-windows8.0\Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
