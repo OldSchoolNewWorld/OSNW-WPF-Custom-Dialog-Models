@@ -13,10 +13,11 @@
     <Copyright>Copyright (c) 2025 OldSchoolNewWorld</Copyright>
     <PackageProjectUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</PackageProjectUrl>
     <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-WPF-Custom-Dialog-Models</RepositoryUrl>
-    <PackageTags>WPF Custom Dialog VB VB.NET</PackageTags>
-    <PackageReleaseNotes>Original repost</PackageReleaseNotes>
+    <PackageTags>custom dialog WPF VB.NET Visual Basic</PackageTags>
+    <PackageReleaseNotes>New upload of initial development version.</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AssemblyVersion>0.1.0</AssemblyVersion>
+    <PackageId>OSNW.CustomDialogModelsWPF</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
