@@ -271,11 +271,13 @@ Public NotInheritable Class DialogHost
             icoFilePath As System.String) _
             As System.Windows.Media.Imaging.BitmapSource
 
+            ' Argument checking.
             If (System.String.IsNullOrEmpty(icoFilePath)) Then
                 Throw New System.ArgumentException(
                     "ICO file path cannot be null or empty.",
                     NameOf(icoFilePath))
             End If
+
             Using IcoStream As New System.IO.FileStream(
                 icoFilePath, FileMode.Open, FileAccess.Read)
 
