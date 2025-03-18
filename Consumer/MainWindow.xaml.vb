@@ -5,12 +5,11 @@ Option Infer Off
 
 Imports System.Reflection
 
-
-
 ' TODOs
 ' What needs to be done about disposing of a dialog after it has been used?
 '   Does it just go out of scope and have no references?
 ' Is it possible to get XML comments to work on the windows?
+
 Class MainWindow
 
     ' DEV: These specific values are not intended as part of the model. They are
