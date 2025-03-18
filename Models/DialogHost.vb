@@ -44,7 +44,9 @@ Imports System.Windows
 ''' the consuming assembly include: Icon, Owner, ShowInTaskbar, Title,
 ''' WindowStartupLocation, ShowDialog(), and DialogResult.
 ''' </para>
-''' <example> This sample shows how to use a <c>DialogHost</c>.
+''' <example> This sample shows how to use a <c>DialogHost</c>. NOTE:
+''' "OSNW.Dialog.DialogHost" only refers to the model included here; it is not
+''' intended as a base type. Change the name to suit the the new implementation.
 ''' <code>
 ''' 
 ''' Imports OSNW.Dialog
@@ -125,7 +127,7 @@ Public NotInheritable Class DialogHost
     ''' <returns>
     ''' A System.Windows.Media.ImageSource object that represents the icon.
     ''' </returns>
-    ''' <remarks>DEV: The HostedDialogWindow has a defaut icon set to
+    ''' <remarks>DEV: The HostedDialogWindow has a default icon set to
     ''' "Dialog.ico". Use the <c>Icon</c> property to override it.</remarks>
     Property Icon As System.Windows.Media.ImageSource
         Get
@@ -225,6 +227,134 @@ Public NotInheritable Class DialogHost
     End Property
 
 #End Region ' "Pass-through properties"
+
+#Region "Exception handling"
+
+    ''' <summary>
+    ''' Reports an invalid call to one of the
+    ''' <c>ShowExceptionMessageBox(&lt;varies&gt;)</c> implementations.
+    ''' </summary>
+    ''' <param name="paramName">Specifies the name of the parameter that was
+    ''' invalid.</param>
+    ''' <param name="reason">Specifies the reason for the rejection.</param>
+    ''' <remarks>
+    ''' This is for invalid calls to
+    ''' <c>ShowExceptionMessageBox(&lt;varies&gt;)</c>, not for generic invalid
+    ''' procedure calls.
+    ''' Note: A <c>DialogHost</c> is not a <c>Window</c>; it cannot be used as
+    ''' the <c>owner</c> of the <c>MessageBox</c>. The reference here is changed
+    ''' to <c>Me.Owner</c>, which is a <c>Window</c>.
+    ''' </remarks>
+    Private Sub ShowExceptionArgNotice(ByVal paramName As System.String,
+                                       ByVal reason As System.String)
+
+        ' REF: OSNW-Exception-Handling-Models
+        ' https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models
+
+        Dim CaptionStr As System.String = "Invalid ShowExceptionMessageBox"
+        Dim IntroDetails As System.String = System.String.Concat(
+            "An invalid exception notice was requested.",
+            $" There is a problem with '{paramName}'.")
+
+        ' Construct and show the notice.
+        Dim ShownDetail As System.String = System.String.Concat(IntroDetails,
+            System.Environment.NewLine, System.Environment.NewLine, reason)
+        If Me.Owner Is Nothing Then
+            ' Show without Me.Owner.
+            ' REF: https://learn.microsoft.com/en-us/dotnet/api/system.windows.messagebox.show?view=windowsdesktop-9.0#remarks
+            ' Use an overload of the Show method, which enables you to specify
+            ' an owner window. Otherwise, the message box is owned by the window
+            ' that is currently active.
+            System.Windows.MessageBox.Show(ShownDetail, CaptionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        Else
+            ' Use Me.Owner.
+            System.Windows.MessageBox.Show(Me.Owner, ShownDetail, CaptionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        End If
+
+    End Sub ' ShowExceptionArgNotice
+
+    ''' <summary>
+    ''' Provides a consistent generic appearance for messages.
+    ''' </summary>
+    ''' <param name="captionStr">Specifies the caption to show on the 
+    ''' <c>MessageBox</c>.</param>
+    ''' <param name="introDetails">Specifies a summary of the exception.</param>
+    ''' <param name="techDetails">Specifies detailed information about the 
+    ''' exception.</param>
+    ''' <remarks>
+    ''' Note: A <c>DialogHost</c> is not a <c>Window</c>; it cannot be used as
+    ''' the <c>owner</c> of the <c>MessageBox</c>. The reference here is changed
+    ''' to <c>Me.Owner</c>, which is a <c>Window</c>.
+    ''' </remarks>
+    Private Sub ShowExceptionNotice(ByVal captionStr As System.String,
+        ByVal introDetails As System.String, ByVal techDetails As System.String)
+
+        ' REF: OSNW-Exception-Handling-Models
+        ' https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models
+
+        ' Construct and show the notice.
+        Dim ShownDetail As System.String = System.String.Concat(introDetails,
+            System.Environment.NewLine, System.Environment.NewLine, techDetails)
+        If Me.Owner Is Nothing Then
+            ' Show without Me.Owner.
+            ' REF: https://learn.microsoft.com/en-us/dotnet/api/system.windows.messagebox.show?view=windowsdesktop-9.0#remarks
+            ' Use an overload of the Show method, which enables you to specify
+            ' an owner window. Otherwise, the message box is owned by the window
+            ' that is currently active.
+            System.Windows.MessageBox.Show(ShownDetail, captionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        Else
+            ' Use Me.Owner.
+            System.Windows.MessageBox.Show(Me.Owner, ShownDetail, captionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        End If
+
+    End Sub ' ShowExceptionNotice
+
+    ''' <summary>
+    ''' Shows details about an <c>Exception</c> that was caught.
+    ''' </summary>
+    ''' <param name="caughtBy">Specifies the process in which an exception was
+    ''' caught.</param>
+    ''' <param name="caughtEx">Provides the exception that was caught.</param>
+    Private Sub ShowExceptionMessageBox(
+        ByVal caughtBy As System.Reflection.MethodBase,
+        ByVal caughtEx As System.Exception)
+
+        ' REF: OSNW-Exception-Handling-Models
+        ' https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models
+
+        ' Argument checking.
+        If caughtEx Is Nothing Then
+            Me.ShowExceptionArgNotice(NameOf(caughtEx),
+                $"'{NameOf(caughtEx)}' cannot be 'Nothing'/'Null'.")
+            Exit Sub ' Early exit.
+        End If
+        Dim CaughtByName As System.String = If(caughtBy Is Nothing,
+            $"Unspecified '{NameOf(caughtBy)}'", caughtBy.Name)
+
+        ' Gather information of interest.
+        Dim CaughtExMessage As System.String = caughtEx.Message
+        Dim CaughtExBaseException As System.Exception =
+            caughtEx.GetBaseException
+        Dim IntroDetails As System.String =
+            $"'{CaughtByName}' failed with message '{CaughtExMessage}'."
+        Dim TechDetails As System.String =
+            $"The initial cause is {CaughtExBaseException}."
+
+        ' Construct and show the notice.
+        Dim Caption As System.String = "Process Failure"
+        Me.ShowExceptionNotice(Caption, IntroDetails, TechDetails)
+
+    End Sub ' ShowExceptionMessageBox
+
+#End Region ' "Exception handling"
 
 #Region "Constructor helpers"
 
@@ -391,34 +521,71 @@ Public NotInheritable Class DialogHost
             '' "Build Action" can be left as "Resource" and "Copy to Output
             '' Directory" can be left as "Do not copy". It does not need to be
             '' in a Resources folder.
-            'Dim ReposPath As System.String = "C:\Users\UserX\source\repos"
-            'Dim ProjectPath As System.String =
-            '    "\OSNW-WPF-Custom-Dialog-Models\Models"
-            'Dim FilePath As System.String = "\Resources\InitFromFile.ico"
-            'Dim IconPath As System.String =
-            '    $"{ReposPath}{ProjectPath}{FilePath}"
-            '.m_Icon = GetIconFromFile(IconPath)
+            'Try
+            '    Dim ReposPath As System.String = "C:\Users\UserX\source\repos"
+            '    Dim ProjectPath As System.String =
+            '        "\OSNW-WPF-Custom-Dialog-Models\Models"
+            '    Dim FilePath As System.String = "\Resources\InitFromFile.ico"
+            '    Dim IconPath As System.String =
+            '        $"{ReposPath}{ProjectPath}{FilePath}"
+            '    .m_Icon = GetIconFromFile(IconPath)
+            'Catch CaughtEx As System.Exception
+
+            '    ' Respond to an anticipated exception.
+            '    Dim CaughtBy As System.Reflection.MethodBase =
+            '        System.Reflection.MethodBase.GetCurrentMethod
+            '    Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+
+            '    ' Optional rethrow of the caught exception.
+            '    'Throw
+
+            'End Try
 
             '' DEV: Load an icon from an embedded resource.
             '' Set "Build Action" to "Resource" and "Copy to Output Directory"
             '' to "Do not copy".
-            'Dim ReferencedAssembly As System.String = "Models"
-            'Dim EmbeddedFileName As System.String = "InitEmbeddedResource.ico"
-            'Dim IconPath As System.String =
-            '    GetIconPackURI(ReferencedAssembly, EmbeddedFileName)
-            '.m_Icon = GetIconFromResource(IconPath)
+            'Try
+            '    Dim ReferencedAssembly As System.String = "Models"
+            '    Dim EmbeddedFileName As System.String = "InitEmbeddedResource.ico"
+            '    Dim IconPath As System.String =
+            '        GetIconPackURI(ReferencedAssembly, EmbeddedFileName)
+            '    .m_Icon = GetIconFromResource(IconPath)
+            'Catch CaughtEx As System.Exception
+
+            '    ' Respond to an anticipated exception.
+            '    Dim CaughtBy As System.Reflection.MethodBase =
+            '        System.Reflection.MethodBase.GetCurrentMethod
+            '    Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+
+            '    ' Optional rethrow of the caught exception.
+            '    'Throw
+
+            'End Try
 
             '' DEV: Load an icon from an overridable file.
+            'Try
 
-            '' REF: C# Executable Executing directory
-            '' https://stackoverflow.com/questions/7025269/c-sharp-executable-executing-directory
-            'Dim AssyPath As System.String = System.IO.Path.GetDirectoryName(
-            '    Assembly.GetExecutingAssembly().Location)
+            '    ' REF: C# Executable Executing directory
+            '    ' https://stackoverflow.com/questions/7025269/c-sharp-executable-executing-directory
+            '    Dim AssyPath As System.String = System.IO.Path.GetDirectoryName(
+            '        Assembly.GetExecutingAssembly().Location)
 
-            '' Now use that info.
-            'Dim FilePath As System.String = "\Resources\Override.ico"
-            'Dim IconPath As System.String = $"{AssyPath}{FilePath}"
-            '.m_Icon = GetIconFromFile(IconPath)
+            '    ' Now use that info.
+            '    Dim FilePath As System.String = "\Resources\Override.ico"
+            '    Dim IconPath As System.String = $"{AssyPath}{FilePath}"
+            '    .m_Icon = GetIconFromFile(IconPath)
+
+            'Catch CaughtEx As System.Exception
+
+            '    ' Respond to an anticipated exception.
+            '    Dim CaughtBy As System.Reflection.MethodBase =
+            '        System.Reflection.MethodBase.GetCurrentMethod
+            '    Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+
+            '    ' Optional rethrow of the caught exception.
+            '    'Throw
+
+            'End Try
 
         End With
     End Sub ' New
