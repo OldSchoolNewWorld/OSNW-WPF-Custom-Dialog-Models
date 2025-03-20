@@ -509,7 +509,7 @@ Public NotInheritable Class DialogHost
 
             '            .m_DialogResult = Nothing ' Matches default.
             '            .m_Owner = Nothing ' Matches default.
-            .m_ResizeMode = ResizeMode.CanResize ' Matches default.
+            .m_ResizeMode = ResizeMode.CanResize ' Matches default for a Window.
             '            .m_ShowInTaskbar = False ' Matches default.
             .m_Title = "SET TITLE!"
             '            .m_WindowStartupLocation =
