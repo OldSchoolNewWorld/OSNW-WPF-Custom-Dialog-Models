@@ -90,7 +90,7 @@ Public NotInheritable Class DialogHost
 
 #End Region ' "Properties"
 
-#Region "Pass-through properties"
+#Region "Model pass-through properties"
     ' These are properties for a HostedDialogWindow that does not always exist.
     ' They are passed to the Window when it gets created.
 
@@ -170,6 +170,21 @@ Public NotInheritable Class DialogHost
         End Set
     End Property
 
+    Private m_ResizeMode As System.Windows.ResizeMode
+    ''' <summary>
+    ''' Gets or sets a value that indicates how a window is resized.
+    ''' </summary>
+    ''' <returns>A <see cref="System.Windows.ResizeMode"/> value specifying the
+    ''' resize mode.</returns>
+    Public Property ResizeMode As System.Windows.ResizeMode
+        Get
+            Return Me.m_ResizeMode
+        End Get
+        Set(value As System.Windows.ResizeMode)
+            Me.m_ResizeMode = value
+        End Set
+    End Property
+
     Private m_ShowInTaskbar As System.Boolean
     ''' <summary>
     ''' Gets or sets a value that indicates whether the window has a task bar
@@ -226,7 +241,7 @@ Public NotInheritable Class DialogHost
         End Set
     End Property
 
-#End Region ' "Pass-through properties"
+#End Region ' "Model pass-through properties"
 
 #Region "Exception handling"
 
@@ -494,6 +509,7 @@ Public NotInheritable Class DialogHost
 
             '            .m_DialogResult = Nothing ' Matches default.
             '            .m_Owner = Nothing ' Matches default.
+            .m_ResizeMode = ResizeMode.CanResize ' Matches default.
             '            .m_ShowInTaskbar = False ' Matches default.
             .m_Title = "SET TITLE!"
             '            .m_WindowStartupLocation =
@@ -616,6 +632,7 @@ Public NotInheritable Class DialogHost
             ' Set the properties that get sent to the window.
 
             HostedWindow.Owner = Me.Owner
+            HostedWindow.ResizeMode = Me.ResizeMode
             HostedWindow.ShowInTaskbar = Me.ShowInTaskbar
             HostedWindow.Title = Me.Title
             HostedWindow.WindowStartupLocation = Me.WindowStartupLocation
