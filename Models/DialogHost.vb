@@ -35,14 +35,16 @@ Imports System.Windows
 ''' </para>
 ''' <para>
 ''' A <c>DialogHost</c> is a shell that isolates the window itself, hiding most
-''' features of System.Windows.Window. Necessary System.Windows.Window features
+''' features of <see cref="System.Windows.Window"/>.
+''' Selected <see cref="System.Windows.Window"/> properties, fields, and methods
 ''' can be exposed as pass-through accessors.
 ''' </para>
 ''' <para>
-''' This class would need to expose certain Window properties and methods to be
-''' used by the calling assembly. Items likely to be desirable for access from
-''' the consuming assembly include: Icon, Owner, ShowInTaskbar, Title,
-''' WindowStartupLocation, ShowDialog(), and DialogResult.
+''' This class would need to expose certain <see cref="System.Windows.Window"/>
+''' properties, fields, and methods to be used by the calling assembly. Items
+''' likely to be desirable for access from the consuming assembly include:
+''' <c>Icon</c>, <c>Owner</c>, <c>ShowInTaskbar</c>, <c>Title</c>,
+''' <c>WindowStartupLocation</c>, <c>ShowDialog()</c>, and <c>DialogResult</c>.
 ''' </para>
 ''' <example> This sample shows how to use a <c>DialogHost</c>. NOTE:
 ''' "OSNW.Dialog.DialogHost" only refers to the model included here; it is not
@@ -68,7 +70,7 @@ Imports System.Windows
 '''     ' Update the visuals.
 ''' 
 '''     'Else
-'''     '' Is anything needed when ShowDialog is false?
+'''     '' Is anything needed when ShowDialog is False?
 ''' End If
 ''' 
 ''' </code>
@@ -78,21 +80,14 @@ Public NotInheritable Class DialogHost
 
 #Region "Properties"
 
-    ' DEV: These specific properties are not intended as part of the model. They
-    ' are included to support operation of the example. In general, examination
-    ' by the setter should normally be handled here before passing data to the
-    ' window.
-    Public Property Red As System.Byte
-    Public Property Green As System.Byte
-    Public Property Blue As System.Byte
-    Public Property TheString As System.String
-    Public Property TheInteger As System.Int32
+#Region "Model Pass-through Properties"
+    ' These are common properties for a HostedDialogWindow that does not exist
+    ' until created by the DialogHost. They are passed to the Window when it
+    ' gets created.
 
-#End Region ' "Properties"
-
-#Region "Model pass-through properties"
-    ' These are properties for a HostedDialogWindow that does not always exist.
-    ' They are passed to the Window when it gets created.
+    ' DEV: These common properties are intended as part of the model. In
+    ' general, validation should be handled here, by the setter, before passing
+    ' data to the window.
 
     Private m_DialogResult As System.Boolean?
     ''' <summary>
@@ -241,9 +236,27 @@ Public NotInheritable Class DialogHost
         End Set
     End Property
 
-#End Region ' "Model pass-through properties"
+#End Region ' "Model Pass-through Properties"
 
-#Region "Exception handling"
+#Region "Localized Pass-through Properties"
+    ' These are application-specific properties for a HostedDialogWindow. They
+    ' are passed to the DialogWindow when it gets created.
+
+    ' DEV: These properties are not intended as part of the model. They are
+    ' included to support operation of the example. In general, validation
+    ' should be handled here, by the setter, before passing data to the window.
+
+    Public Property Red As System.Byte
+    Public Property Green As System.Byte
+    Public Property Blue As System.Byte
+    Public Property TheString As System.String
+    Public Property TheInteger As System.Int32
+
+#End Region ' "Localized Pass-through Properties"
+
+#End Region ' "Properties"
+
+#Region "Exception Handling"
 
     ''' <summary>
     ''' Reports an invalid call to one of the
@@ -369,9 +382,9 @@ Public NotInheritable Class DialogHost
 
     End Sub ' ShowExceptionMessageBox
 
-#End Region ' "Exception handling"
+#End Region ' "Exception Handling"
 
-#Region "Constructor helpers"
+#Region "Constructor Helpers"
 
     ''' <summary>
     ''' A helper class to convert image data.
@@ -494,7 +507,7 @@ Public NotInheritable Class DialogHost
 
     End Function ' GetIconFromResource
 
-#End Region ' "Constructor helpers"
+#End Region ' "Constructor Helpers"
 
 #Region "Constructors"
 
