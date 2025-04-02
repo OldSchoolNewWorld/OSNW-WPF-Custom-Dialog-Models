@@ -118,7 +118,7 @@ Public Class DialogWindow
 
 #End Region ' "Internal utilities"
 
-#Region "Model utilities"
+#Region "Dialog Model Utilities"
     ' These utilities are intended as part of the model.
 
     '''' <summary>
@@ -159,9 +159,9 @@ Public Class DialogWindow
 
     End Function ' OkToOk
 
-#End Region ' "Model utilities"
+#End Region ' "Dialog Model Utilities"
 
-#Region "Model Events"
+#Region "Dialog Model Events"
     ' These events are intended as part of the model.
 
     ''' <summary>
@@ -304,7 +304,7 @@ Public Class DialogWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Model Events"
+#End Region ' "Dialog Model Events"
 
 #Region "Example Events"
     ' These events are not intended as part of the model. They are included to
