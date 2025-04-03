@@ -69,7 +69,7 @@ Friend Class HostedWindow
 
 #End Region ' "Properties"
 
-#Region "Internal utilities"
+#Region "Internal Utilities"
     ' DEV: These utilities are not intended as part of the model. Any dialog may
     ' need to perform operations unique to itself.
 
@@ -89,9 +89,9 @@ Friend Class HostedWindow
             System.Windows.Media.Colors.Black)
     End Function ' ContrastingBW
 
-#End Region ' "Internal utilities"
+#End Region ' "Internal Utilities"
 
-#Region "Model utilities"
+#Region "Hosted Window Model Utilities"
     ' These utilities are intended as part of the model, but the implementation
     ' may vary or they may be omitted in individual cases.
 
@@ -164,7 +164,7 @@ Friend Class HostedWindow
         End If
     End Function ' OkToOk
 
-#End Region ' "Model utilities"
+#End Region ' "Hosted Window Model Utilities"
 
 #Region "Event Implementations"
     ' These routines contain detailed implementations of Event handlers.
@@ -197,7 +197,7 @@ Friend Class HostedWindow
 
 #End Region ' "Event Implementations"
 
-#Region "Model Events"
+#Region "Hosted Window Model Events"
 
     ''' <summary>
     ''' Occurs when this <c>Window</c> is initialized. Backing fields and local
@@ -323,7 +323,7 @@ Friend Class HostedWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Model Events"
+#End Region ' "Hosted Window Model Events"
 
 #Region "Example Events"
     ' DEV: These events are not intended as part of the model. They are included

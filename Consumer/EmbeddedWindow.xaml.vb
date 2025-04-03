@@ -47,7 +47,7 @@ Public Class EmbeddedWindow
 
 #End Region ' "Properties"
 
-#Region "Internal utilities"
+#Region "Internal Utilities"
     ' DEV: These utilities are not necessarily intended as part of the model.
 
     '''' <summary>
@@ -85,9 +85,9 @@ Public Class EmbeddedWindow
         Me.ColorTextBox.Text = $"R:{Me.Red} G:{Me.Green} B:{Me.Blue}"
     End Sub ' UpdateColorTextBox
 
-#End Region ' "Internal utilities"
+#End Region ' "Internal Utilities"
 
-#Region "Model utilities"
+#Region "Dialog Model Utilities"
     ' DEV: These utilities are intended as part of the model.
 
     '''' <summary>
@@ -128,9 +128,9 @@ Public Class EmbeddedWindow
 
     End Function ' OkToOk
 
-#End Region ' "Model utilities"
+#End Region ' "Dialog Model Utilities"
 
-#Region "Model Events"
+#Region "Dialog Model Events"
     ' DEV: These events are intended as part of the model.
 
     ''' <summary>
@@ -273,7 +273,7 @@ Public Class EmbeddedWindow
         End If
     End Sub ' OkButton_Click
 
-#End Region ' "Model Events"
+#End Region ' "Dialog Model Events"
 
 #Region "Example Events"
     ' DEV: These events are not intended as part of the model. They are included

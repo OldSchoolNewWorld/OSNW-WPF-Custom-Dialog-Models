@@ -79,7 +79,7 @@ Public Class DialogWindow
 
 #End Region ' "Properties"
 
-#Region "Internal utilities"
+#Region "Internal Utilities"
     ' These utilities are not necessarily intended as part of the model.
 
     '''' <summary>
@@ -116,7 +116,7 @@ Public Class DialogWindow
         Me.ColorTextBox.Text = $"R:{Me.Red} G:{Me.Green} B:{Me.Blue}"
     End Sub ' UpdateColorTextBox
 
-#End Region ' "Internal utilities"
+#End Region ' "Internal Utilities"
 
 #Region "Dialog Model Utilities"
     ' These utilities are intended as part of the model.
