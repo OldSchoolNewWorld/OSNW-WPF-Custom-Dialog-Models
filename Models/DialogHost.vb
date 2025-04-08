@@ -524,11 +524,9 @@ Public NotInheritable Class DialogHost
 
                 ' HostedWindow.SharedHostedWindowValues contains the shared
                 ' initialization definitions.
-                ' HostedWindow.New, DialogHost.New,
-                ' DialogWindow.Window_Initialized, and
-                ' EmbeddedWindow.Window_Initialized, should reference the
-                ' shared values so that changes in the definitions will
-                ' be matched by the windows.
+                ' HostedWindow.New, DialogHost.New, and
+                ' DialogWindow.Window_Initialized should reference the shared values
+                ' so that changes in the definitions will be matched by the windows.
 
                 ' Window items.
                 .m_ResizeMode = SHWV.DEFAULTRESIZEMODE

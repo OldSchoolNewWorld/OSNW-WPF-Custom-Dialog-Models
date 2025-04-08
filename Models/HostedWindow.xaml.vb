@@ -64,11 +64,9 @@ Friend Class HostedWindow
 
         ' HostedWindow.SharedHostedWindowValues contains the shared
         ' initialization definitions.
-        ' HostedWindow.New, DialogHost.New,
-        ' DialogWindow.Window_Initialized, and
-        ' EmbeddedWindow.Window_Initialized, should reference the
-        ' shared values so that changes in the definitions will
-        ' be matched by the windows.
+        ' HostedWindow.New, DialogHost.New, and
+        ' DialogWindow.Window_Initialized should reference the shared values
+        ' so that changes in the definitions will be matched by the windows.
 
         ' Window items.
         With Me
@@ -93,11 +91,9 @@ Friend Class HostedWindow
 
         ' HostedWindow.SharedHostedWindowValues contains the shared
         ' initialization definitions.
-        ' HostedWindow.New, DialogHost.New,
-        ' DialogWindow.Window_Initialized, and
-        ' EmbeddedWindow.Window_Initialized, should reference the
-        ' shared values so that changes in the definitions will
-        ' be matched by the windows.
+        ' HostedWindow.New, DialogHost.New, and
+        ' DialogWindow.Window_Initialized should reference the shared values
+        ' so that changes in the definitions will be matched by the windows.
 
         ' Window items.
         ' Items matching defaults for a Window. Can be changed here.

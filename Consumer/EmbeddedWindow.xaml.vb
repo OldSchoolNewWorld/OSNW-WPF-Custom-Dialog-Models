@@ -3,8 +3,8 @@ Option Strict On
 Option Compare Binary
 Option Infer Off
 
-Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
-
+'Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
+Imports RHWV = Consumer.EmbeddedWindow.ReplicatedHostedWindowValues
 
 ' For Dialog.ico, set "Build Action" to "Resource" and "Copy to Output
 ' Directory" to "Do not copy".
@@ -29,6 +29,41 @@ Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
 '''' </para>
 '''' </remarks>
 Public Class EmbeddedWindow
+
+    Public Class ReplicatedHostedWindowValues
+
+        ' This section is replicated here because the application has no access
+        ' to Friend ColorDlgWindow, which is only reachable within the models
+        ' for the dialogs in a DLL.
+
+        ' These are public members of the Friend ColorDlgWindow class. As such,
+        ' they are reachable by the dialog host, particulary during initialization.
+
+        ' Initialization constants.
+
+        ' HostedWindow.SharedHostedWindowValues contains the shared
+        ' initialization definitions.
+        ' HostedWindow.New, DialogHost.New, and
+        ' DialogWindow.Window_Initialized should reference the shared values
+        ' so that changes in the definitions will be matched by the windows.
+
+        ' Window items.
+        ' Items matching defaults for a Window. Can be changed here.
+        Public Const DEFAULTRESIZEMODE As System.Windows.ResizeMode =
+            System.Windows.ResizeMode.CanResize
+        Public Const DEFAULTSHOWINTASKBAR As System.Boolean = False
+        Public Const DEFAULTWINDOWSTARTUPLOCATION As _
+            System.Windows.WindowStartupLocation =
+            System.Windows.WindowStartupLocation.Manual
+        ' Non-matching items changed for the model.
+        Public Const DEFAULTDIALOGTITLE As System.String = "SET TITLE!"
+
+        ' Add any other values to share reachability to the DialogHost.
+        '
+        '
+        '
+
+    End Class ' ReplicatedHostedWindowValues
 
     ' A signal to distinguish between aborts and acceptance at closure.
     Private ClosingViaOk As System.Boolean
@@ -148,17 +183,15 @@ Public Class EmbeddedWindow
 
             ' HostedWindow.SharedHostedWindowValues contains the shared
             ' initialization definitions.
-            ' HostedWindow.New, DialogHost.New,
-            ' DialogWindow.Window_Initialized, and
-            ' EmbeddedWindow.Window_Initialized, should reference the
-            ' shared values so that changes in the definitions will
-            ' be matched by the windows.
+            ' HostedWindow.New, DialogHost.New, and
+            ' DialogWindow.Window_Initialized should reference the shared values
+            ' so that changes in the definitions will be matched by the windows.
 
             ' Window items.
-            .ResizeMode = SHWV.DEFAULTRESIZEMODE
-            .ShowInTaskbar = SHWV.DEFAULTSHOWINTASKBAR
-            .Title = SHWV.DEFAULTDIALOGTITLE
-            .WindowStartupLocation = SHWV.DEFAULTWINDOWSTARTUPLOCATION
+            .ResizeMode = RHWV.DEFAULTRESIZEMODE
+            .ShowInTaskbar = RHWV.DEFAULTSHOWINTASKBAR
+            .Title = RHWV.DEFAULTDIALOGTITLE
+            .WindowStartupLocation = RHWV.DEFAULTWINDOWSTARTUPLOCATION
 
         End With
 
