@@ -5,8 +5,8 @@ Option Infer Off
 
 Imports System.ComponentModel
 Imports System.IO
-Imports System.Reflection
 Imports System.Windows
+Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
 
 ' NOTE: <UseWPF>true</UseWPF> may need to be added to the dialogs'
 ' <projectname>.vbproj file.
@@ -520,13 +520,25 @@ Public NotInheritable Class DialogHost
         ' Assign initial defaults.
         With Me
 
-            '            .m_DialogResult = Nothing ' Matches default.
-            '            .m_Owner = Nothing ' Matches default.
-            .m_ResizeMode = ResizeMode.CanResize ' Matches default for a Window.
-            '            .m_ShowInTaskbar = False ' Matches default.
-            .m_Title = "SET TITLE!"
-            '            .m_WindowStartupLocation =
-            '                WindowStartupLocation.Manual ' Matches default.
+            With Me
+
+                ' HostedWindow.SharedHostedWindowValues contains the shared
+                ' initialization definitions.
+                ' HostedWindow.New, DialogHost.New,
+                ' DialogWindow.Window_Initialized, and
+                ' EmbeddedWindow.Window_Initialized, should reference the
+                ' shared values so that changes in the definitions will
+                ' be matched by the windows.
+
+                ' Window items.
+                .m_ResizeMode = SHWV.DEFAULTRESIZEMODE
+                .m_ShowInTaskbar = SHWV.DEFAULTSHOWINTASKBAR
+                .m_Title = SHWV.DEFAULTDIALOGTITLE
+                .m_WindowStartupLocation = SHWV.DEFAULTWINDOWSTARTUPLOCATION
+                '            .m_Owner = Nothing ' Matches default.
+                '            .m_DialogResult = Nothing ' Matches default.
+
+            End With
 
             ' DEV: The HostedDialogWindow is configured with a default icon that
             ' is set in its XAML layout. If m_Icon for the DialogHost is left at
@@ -638,52 +650,52 @@ Public NotInheritable Class DialogHost
     ''' (System.Windows.Window.Closed).
     ''' </exception>
     Public Function ShowDialog() As System.Boolean?
-        Dim DlgResult As System.Boolean?
-        Dim HostedWindow As New OSNW.Dialog.HostedWindow
-        Try
+                Dim DlgResult As System.Boolean?
+                Dim HostedWindow As New OSNW.Dialog.HostedWindow
+                Try
 
-            ' Set the properties that get sent to the window.
+                    ' Set the properties that get sent to the window.
 
-            HostedWindow.Owner = Me.Owner
-            HostedWindow.ResizeMode = Me.ResizeMode
-            HostedWindow.ShowInTaskbar = Me.ShowInTaskbar
-            HostedWindow.Title = Me.Title
-            HostedWindow.WindowStartupLocation = Me.WindowStartupLocation
+                    HostedWindow.Owner = Me.Owner
+                    HostedWindow.ResizeMode = Me.ResizeMode
+                    HostedWindow.ShowInTaskbar = Me.ShowInTaskbar
+                    HostedWindow.Title = Me.Title
+                    HostedWindow.WindowStartupLocation = Me.WindowStartupLocation
 
-            ' Only push .Icon if it has been set in the DialogHost.
-            If Me.Icon IsNot Nothing Then
-                HostedWindow.Icon = Me.Icon
-            End If
+                    ' Only push .Icon if it has been set in the DialogHost.
+                    If Me.Icon IsNot Nothing Then
+                        HostedWindow.Icon = Me.Icon
+                    End If
 
-            HostedWindow.Red = Me.Red
-            HostedWindow.Green = Me.Green
-            HostedWindow.Blue = Me.Blue
-            HostedWindow.TheString = Me.TheString
-            HostedWindow.TheInteger = Me.TheInteger
+                    HostedWindow.Red = Me.Red
+                    HostedWindow.Green = Me.Green
+                    HostedWindow.Blue = Me.Blue
+                    HostedWindow.TheString = Me.TheString
+                    HostedWindow.TheInteger = Me.TheInteger
 
-            ' Show the dialog window. Process the result.
-            DlgResult = HostedWindow.ShowDialog
-            If DlgResult Then
-                ' Extract any data being returned.
-                Me.Red = HostedWindow.Red
-                Me.Green = HostedWindow.Green
-                Me.Blue = HostedWindow.Blue
-                Me.TheString = HostedWindow.TheString
-                Me.TheInteger = HostedWindow.TheInteger
-                'Else
-                '' Is anything needed when ShowDialog is false?
-            End If
+                    ' Show the dialog window. Process the result.
+                    DlgResult = HostedWindow.ShowDialog
+                    If DlgResult Then
+                        ' Extract any data being returned.
+                        Me.Red = HostedWindow.Red
+                        Me.Green = HostedWindow.Green
+                        Me.Blue = HostedWindow.Blue
+                        Me.TheString = HostedWindow.TheString
+                        Me.TheInteger = HostedWindow.TheInteger
+                        'Else
+                        '' Is anything needed when ShowDialog is false?
+                    End If
 
-        Finally
-            ' DISPOSE OF THE WINDOW?????? SET TO NOTHING ENOUGH TO GET RID OF AT
-            ' LEAST THE WINDOW????? JUST LET THE WINDOW GO OUT OF SCOPE?????
-            ' SETTING TO NOTHING WARNS "Unnecessary assignment of a value to
-            ' 'HostedWindow'"
-            '            HostedWindow = Nothing
-        End Try
-        Return DlgResult
-    End Function ' ShowDialog
+                Finally
+                    ' DISPOSE OF THE WINDOW?????? SET TO NOTHING ENOUGH TO GET RID OF AT
+                    ' LEAST THE WINDOW????? JUST LET THE WINDOW GO OUT OF SCOPE?????
+                    ' SETTING TO NOTHING WARNS "Unnecessary assignment of a value to
+                    ' 'HostedWindow'"
+                    '            HostedWindow = Nothing
+                End Try
+                Return DlgResult
+            End Function ' ShowDialog
 
 #End Region ' "Methods"
 
-End Class ' DialogHost
+        End Class ' DialogHost

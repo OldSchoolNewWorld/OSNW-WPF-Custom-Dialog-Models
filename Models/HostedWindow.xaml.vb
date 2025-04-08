@@ -4,7 +4,7 @@ Option Compare Binary
 Option Infer Off
 
 Imports System.Windows
-'Imports System.Windows.Controls
+Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
 
 ' NOTE: <UseWPF>true</UseWPF> may need to be added to the dialogs'
 ' <projectname>.vbproj file.
@@ -54,6 +54,70 @@ Friend Class HostedWindow
 
     ' A signal to prevent recursive responses.
     Private SettingSliders As System.Boolean
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        ' HostedWindow.SharedHostedWindowValues contains the shared
+        ' initialization definitions.
+        ' HostedWindow.New, DialogHost.New,
+        ' DialogWindow.Window_Initialized, and
+        ' EmbeddedWindow.Window_Initialized, should reference the
+        ' shared values so that changes in the definitions will
+        ' be matched by the windows.
+
+        ' Window items.
+        With Me
+            .ResizeMode = SHWV.DEFAULTRESIZEMODE
+            .ShowInTaskbar = SHWV.DEFAULTSHOWINTASKBAR
+            .Title = SHWV.DEFAULTDIALOGTITLE
+            .WindowStartupLocation = SHWV.DEFAULTWINDOWSTARTUPLOCATION
+            '            .Owner = Nothing ' Matches default.
+            '            .DialogResult = Nothing ' Matches default.
+        End With
+
+    End Sub
+
+#Region "Localized Types"
+
+    Public Class SharedHostedWindowValues
+
+        ' These are public members of the Friend ColorDlgWindow class. As such,
+        ' they are reachable by the dialog host, particulary during initialization.
+
+        ' Initialization constants.
+
+        ' HostedWindow.SharedHostedWindowValues contains the shared
+        ' initialization definitions.
+        ' HostedWindow.New, DialogHost.New,
+        ' DialogWindow.Window_Initialized, and
+        ' EmbeddedWindow.Window_Initialized, should reference the
+        ' shared values so that changes in the definitions will
+        ' be matched by the windows.
+
+        ' Window items.
+        ' Items matching defaults for a Window. Can be changed here.
+        Public Const DEFAULTRESIZEMODE As System.Windows.ResizeMode =
+            System.Windows.ResizeMode.CanResize
+        Public Const DEFAULTSHOWINTASKBAR As System.Boolean = False
+        Public Const DEFAULTWINDOWSTARTUPLOCATION As _
+            System.Windows.WindowStartupLocation =
+            System.Windows.WindowStartupLocation.Manual
+        ' Non-matching items changed for the model.
+        Public Const DEFAULTDIALOGTITLE As System.String = "SET TITLE!"
+
+        ' Add any other values to share reachability to the DialogHost.
+        '
+        '
+        '
+
+    End Class ' SharedHostedWindowValues
+
+#End Region ' Localized Types
 
 #Region "Properties"
 
@@ -207,7 +271,18 @@ Friend Class HostedWindow
     Private Sub Window_Initialized(sender As Object, e As EventArgs) _
         Handles Me.Initialized
 
+        With Me
+
+            ' Window items.
+            .ResizeMode = SHWV.DEFAULTRESIZEMODE
+            .ShowInTaskbar = SHWV.DEFAULTSHOWINTASKBAR
+            .Title = SHWV.DEFAULTDIALOGTITLE
+            .WindowStartupLocation = SHWV.DEFAULTWINDOWSTARTUPLOCATION
+
+        End With
+
         Me.ClosingViaOk = False
+
     End Sub ' Window_Initialized
 
     ''' <summary>

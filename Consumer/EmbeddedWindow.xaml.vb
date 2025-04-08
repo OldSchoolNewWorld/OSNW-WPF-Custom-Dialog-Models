@@ -3,6 +3,9 @@ Option Strict On
 Option Compare Binary
 Option Infer Off
 
+Imports SHWV = OSNW.Dialog.HostedWindow.SharedHostedWindowValues
+
+
 ' For Dialog.ico, set "Build Action" to "Resource" and "Copy to Output
 ' Directory" to "Do not copy".
 
@@ -141,7 +144,26 @@ Public Class EmbeddedWindow
     Private Sub Window_Initialized(sender As Object, e As EventArgs) _
         Handles Me.Initialized
 
+        With Me
+
+            ' HostedWindow.SharedHostedWindowValues contains the shared
+            ' initialization definitions.
+            ' HostedWindow.New, DialogHost.New,
+            ' DialogWindow.Window_Initialized, and
+            ' EmbeddedWindow.Window_Initialized, should reference the
+            ' shared values so that changes in the definitions will
+            ' be matched by the windows.
+
+            ' Window items.
+            .ResizeMode = SHWV.DEFAULTRESIZEMODE
+            .ShowInTaskbar = SHWV.DEFAULTSHOWINTASKBAR
+            .Title = SHWV.DEFAULTDIALOGTITLE
+            .WindowStartupLocation = SHWV.DEFAULTWINDOWSTARTUPLOCATION
+
+        End With
+
         Me.ClosingViaOk = False
+
     End Sub ' Window_Initialized
 
     ''' <summary>
