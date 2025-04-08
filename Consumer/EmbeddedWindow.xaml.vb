@@ -36,8 +36,7 @@ Public Class EmbeddedWindow
         ' to Friend ColorDlgWindow, which is only reachable within the models
         ' for the dialogs in a DLL.
 
-        ' These are public members of the Friend ColorDlgWindow class. As such,
-        ' they are reachable by the dialog host, particulary during initialization.
+        ' These are replicated public members of the Friend ColorDlgWindow class.
 
         ' Initialization constants.
 
@@ -57,11 +56,6 @@ Public Class EmbeddedWindow
             System.Windows.WindowStartupLocation.Manual
         ' Non-matching items changed for the model.
         Public Const DEFAULTDIALOGTITLE As System.String = "SET TITLE!"
-
-        ' Add any other values to share reachability to the DialogHost.
-        '
-        '
-        '
 
     End Class ' ReplicatedHostedWindowValues
 
